@@ -36,6 +36,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         ResetSpeed();
         _startPosition = transform.position;
+        _invencible = false;
     }
 
     // Update is called once per frame
@@ -83,6 +84,7 @@ public class PlayerController : Singleton<PlayerController>
     public void SetInvencible(bool b = true)
     {
         _invencible = b;
+        gameObject.GetComponent<BoxCollider>().isTrigger = b;
     }
 
     public void PowerUpSpeedUp(float f)
