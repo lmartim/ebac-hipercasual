@@ -27,7 +27,6 @@ public class PlayerController : Singleton<PlayerController>
     [Header("Animation")]
     public AnimatorManager animatorManager;
 
-    [Header("Privates")]
     private bool _invencible;
     private bool _canRun;
     private float _currentSpeed;
@@ -44,7 +43,7 @@ public class PlayerController : Singleton<PlayerController>
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (!_canRun) return;
 
@@ -54,12 +53,14 @@ public class PlayerController : Singleton<PlayerController>
 
         transform.position = Vector3.Lerp(transform.position, _pos, lerpSpeed * Time.deltaTime);
         transform.Translate(transform.forward * _currentSpeed * Time.deltaTime);
+
     }
 
     void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.tag == tagToCheckEnemy && !_invencible)
         {
+            Debug.Log("End Game");
             EndGame(AnimatorManager.AnimationType.DEAD);
             MoveBack();
         } 
@@ -69,6 +70,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         if (collision.transform.tag == tagToCheckEndLine)
         {
+            Debug.Log("End Game");
             EndGame();
         }
     }
@@ -89,6 +91,7 @@ public class PlayerController : Singleton<PlayerController>
     {
         _canRun = true;
         animatorManager.Play(AnimatorManager.AnimationType.RUN, _currentSpeed / _baseSpeedToAnimation);
+        Debug.Log("STARTOU");
     }
 
     #region POWERUPS
