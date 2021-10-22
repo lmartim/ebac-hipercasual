@@ -8,6 +8,7 @@ public class PowerUpInvencible : PowerUpBase
     protected override void StartPowerUp()
     {
         base.StartPowerUp();
+        Debug.Log(PlayerController.Instance);
         PlayerController.Instance.SetInvencible();
     }
 

@@ -27,6 +27,9 @@ public class PlayerController : Singleton<PlayerController>
     [Header("Animation")]
     public AnimatorManager animatorManager;
 
+    [Header("Bouncer Helper")]
+    [SerializeField] private BounceHelper _bounceHelper;
+
     private bool _invencible;
     private bool _canRun;
     private float _currentSpeed;
@@ -34,12 +37,15 @@ public class PlayerController : Singleton<PlayerController>
     private Vector3 _pos;
     private Vector3 _startPosition;
 
-
     private void Start()
     {
+        transform.localScale = Vector3.zero;
+
         ResetSpeed();
         _startPosition = transform.position;
         _invencible = false;
+
+        transform.DOScale(1, 3f).SetEase(Ease.OutBack).SetDelay(.6f);
     }
 
     // Update is called once per frame
@@ -100,11 +106,13 @@ public class PlayerController : Singleton<PlayerController>
     {
         _invencible = b;
         gameObject.GetComponent<BoxCollider>().isTrigger = b;
+        Bounce(1.2f);
     }
 
     public void PowerUpSpeedUp(float f)
     {
         _currentSpeed = f;
+        Bounce(1.2f);
     }
 
     public void ResetSpeed()
@@ -115,6 +123,7 @@ public class PlayerController : Singleton<PlayerController>
     public void ChangeHeight(float amount, float duration, float animationDuration, Ease ease)
     {
         transform.DOMoveY(_startPosition.y + amount, animationDuration).SetEase(ease);
+        Bounce(1.2f);
         Invoke(nameof(ResetHeight), duration);
     }
 
@@ -128,4 +137,13 @@ public class PlayerController : Singleton<PlayerController>
         coinCollector.transform.localScale = Vector3.one * amount;
     }
     #endregion
+
+    public void Bounce(float scale = 0f)
+    {
+        if (_bounceHelper != null)
+        {
+            if (scale != 0f)_bounceHelper.Bounce(scale);
+            else _bounceHelper.Bounce();
+        }
+    }
 }

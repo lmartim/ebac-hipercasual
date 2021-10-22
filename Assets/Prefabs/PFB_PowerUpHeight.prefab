@@ -318,7 +318,7 @@ MonoBehaviour:
   timeToHide: 3
   graphicItem: {fileID: 8945502828819930835}
   audioSource: {fileID: 0}
-  duration: 3
-  amountToIncrease: 3
+  duration: 2
+  amountToIncrease: 2
   animationDuration: 0.1
   ease: 27

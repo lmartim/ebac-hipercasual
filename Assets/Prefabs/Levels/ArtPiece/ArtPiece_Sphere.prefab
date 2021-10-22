@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5511682629052103617}
   - component: {fileID: 231412398979542360}
   - component: {fileID: 7701338540792168823}
+  - component: {fileID: 1138453278304429987}
   m_Layer: 0
   m_Name: ArtPiece_Sphere
   m_TagString: Untagged
@@ -60,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 3348756333836880102, guid: 3b3a6f601e785ef4d8f8e3684f9ff9b2, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,3 +96,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1138453278304429987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412056197404344737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e4d050775ab7a74eaa2ef9471be5860, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 1
+  meshRenderer: {fileID: 231412398979542360}
+  startColor: {r: 1, g: 1, b: 1, a: 1}
